@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Header from "./components/Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,37 +28,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* Header */}
-        <header className="border-b border-gray-200 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center py-4">
-              <div className="flex items-center">
-                <h1 className="text-2xl font-bold text-black">PERFUME</h1>
-              </div>
-              <nav className="hidden md:flex space-x-8">
-                <a key="perfumes" href="/perfumes" className="text-black hover:text-gray-600">Үнэртэн</a>
-                <a key="collections" href="/collections" className="text-black hover:text-gray-600">Цуглуулга</a>  
-                <a key="about" href="/about" className="text-black hover:text-gray-600">Бидний тухай</a>
-              </nav>
-              <div className="flex items-center space-x-4">
-                <button className="text-black hover:text-gray-600">Нэвтрэх</button>
-              </div>
-            </div>
-          </div>
-        </header>
-
-        {/* Breadcrumb */}
-        <div className="bg-white py-2">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <nav className="text-sm">
-              <ol className="flex items-center space-x-2">
-                <li key="home"><a href="/" className="text-gray-500 hover:text-gray-700">Нүүр</a></li>
-                <li key="separator" className="text-gray-400">/</li>
-                <li key="current" className="text-gray-900">Бидний тухай</li>
-              </ol>
-            </nav>
-          </div>
-        </div>
+        <Header />
 
         {children}
 
