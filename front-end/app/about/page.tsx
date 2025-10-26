@@ -1,84 +1,6 @@
 import Image from "next/image";
-import { fetchAboutContent } from "../utils/api";
 
-export default async function About() {
-  const content = await fetchAboutContent();
-  
-  // Group content by section
-  const contentBySection = content.reduce((acc, item) => {
-    if (!acc[item.section]) {
-      acc[item.section] = [];
-    }
-    acc[item.section].push(item);
-    return acc;
-  }, {} as Record<string, typeof content>);
-
-  // Sort each section by order
-  Object.keys(contentBySection).forEach(section => {
-    contentBySection[section].sort((a, b) => a.order - b.order);
-  });
-
-  const renderSection = (sectionKey: string, defaultContent: () => React.JSX.Element) => {
-    const sectionContent = contentBySection[sectionKey];
-    
-    if (!sectionContent || sectionContent.length === 0) {
-      return defaultContent();
-    }
-
-    return (
-      <section className="mb-20">
-        <div className="max-w-4xl mx-auto">
-          {sectionContent.map((item, index) => (
-            <div key={item._id} className={index > 0 ? "mt-8" : ""}>
-              <h3 
-                className="text-black mb-6 text-center"
-                style={{ 
-                  fontSize: '18px', 
-                  fontWeight: '700', 
-                  fontFamily: '"Sofia Pro", sans-serif'
-                }}
-              >
-                {item.title}
-              </h3>
-              
-              {item.subtitle && (
-                <div className="text-center mb-8">
-                  <h4 
-                    className="text-gray-800 mb-4"
-                    style={{ 
-                      fontSize: '24px', 
-                      fontWeight: '300', 
-                      fontFamily: '"Glossy Display", sans-serif',
-                      fontStyle: 'italic'
-                    }}
-                  >
-                    {item.subtitle}
-                  </h4>
-                </div>
-              )}
-              
-              {item.imageUrl && (
-                <div className="max-w-2xl mx-auto mb-12">
-                  <Image
-                    src={item.imageUrl}
-                    alt={item.title}
-                    width={480}
-                    height={480}
-                    className="w-full h-auto max-w-md mx-auto"
-                    priority
-                  />
-                </div>
-              )}
-              
-              <p className="text-gray-700 leading-relaxed text-center">
-                {item.content}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-    );
-  };
+export default function About() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#f0ece4' }}>
       {/* Main Content */}
@@ -103,8 +25,7 @@ export default async function About() {
           </div>
 
           {/* About our Brand Section */}
-          {renderSection('brand', () => (
-            <section className="mb-20">
+          <section className="mb-20">
               <div className="text-center mb-12">
                 <h2 
                   className="text-black mb-2"
@@ -171,11 +92,9 @@ export default async function About() {
                 </p>
               </div>
             </section>
-          ))}
 
           {/* Where Our Story Began Section */}
-          {renderSection('story', () => (
-            <section className="mb-20">
+          <section className="mb-20">
               <div className="max-w-4xl mx-auto">
                 <h3 
                   className="text-black mb-6 text-center"
@@ -221,11 +140,9 @@ export default async function About() {
                 </div>
               </div>
             </section>
-          ))}
 
           {/* Features Of Our Perfumes Section */}
-          {renderSection('features', () => (
-            <section className="mb-20">
+          <section className="mb-20">
               <div className="max-w-4xl mx-auto">
                 <h3 
                   className="text-black mb-6 text-center"
@@ -298,11 +215,9 @@ export default async function About() {
                 </div>
               </div>
             </section>
-          ))}
 
           {/* Unique classic Section */}
-          {renderSection('unique', () => (
-            <section className="mb-20">
+          <section className="mb-20">
               <div className="max-w-4xl mx-auto">
                 <h3 
                   className="text-black mb-6 text-center"
@@ -348,11 +263,9 @@ export default async function About() {
                 </div>
               </div>
             </section>
-          ))}
 
           {/* Subscribe Section */}
-          {renderSection('subscribe', () => (
-            <section className="bg-white py-16">
+          <section className="bg-white py-16">
               <div className="max-w-4xl mx-auto text-center">
                 <h3 
                   className="text-black mb-4"
@@ -393,7 +306,6 @@ export default async function About() {
                 </div>
               </div>
             </section>
-          ))}
         </div>
       </main>
     </div>
