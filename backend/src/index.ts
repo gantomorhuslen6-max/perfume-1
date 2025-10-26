@@ -6,6 +6,7 @@ import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
 import connectDB from './config/database.js';
 import authRoutes from './routes/auth.js';
+import aboutRoutes from './routes/about.js';
 
 // Load environment variables
 dotenv.config();
@@ -52,17 +53,21 @@ app.get('/api', (req, res) => {
   res.json({
     message: 'Perfume API Server',
     version: '1.0.0',
-    endpoints: {
-      health: '/health',
-      api: '/api',
-      upload: '/api/upload',
-      auth: '/api/auth'
-    }
+      endpoints: {
+        health: '/health',
+        api: '/api',
+        upload: '/api/upload',
+        auth: '/api/auth',
+        about: '/api/about'
+      }
   });
 });
 
 // Authentication routes
 app.use('/api/auth', authRoutes);
+
+// About content routes
+app.use('/api/about', aboutRoutes);
 
 // Image upload endpoint (temporarily disabled)
 // app.post('/api/upload', upload.single('image'), (req, res) => {

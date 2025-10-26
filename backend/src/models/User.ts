@@ -6,6 +6,7 @@ export interface IUser extends Document {
   lastName: string;
   email: string;
   password: string;
+  role: 'user' | 'admin';
   createdAt: Date;
   updatedAt: Date;
   comparePassword(candidatePassword: string): Promise<boolean>;
@@ -39,6 +40,11 @@ const UserSchema = new Schema<IUser>({
     type: String,
     required: [true, 'Нууц үг заавал оруулах шаардлагатай'],
     minlength: [6, 'Нууц үг хамгийн багадаа 6 тэмдэгт байх ёстой']
+  },
+  role: {
+    type: String,
+    enum: ['user', 'admin'],
+    default: 'user'
   }
 }, {
   timestamps: true

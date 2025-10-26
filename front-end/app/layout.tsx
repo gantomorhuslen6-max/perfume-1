@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Header from "./components/Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,25 +29,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {/* Header */}
-        <header className="border-b border-gray-200 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center py-4">
-              <div className="flex items-center">
-                <h1 className="text-2xl font-bold text-black">CLIVE CHRISTIAN</h1>
-              </div>
-              <nav className="hidden md:flex space-x-8">
-                <a href="#" className="text-black hover:text-gray-600">Үнэртэн</a>
-                <a href="#" className="text-black hover:text-gray-600">Цуглуулга</a>
-                <a href="#" className="text-black hover:text-gray-600">Бэлэг</a>
-                <a href="#" className="text-black hover:text-gray-600">Түүх</a>
-                <a href="/about" className="text-black hover:text-gray-600">Бидний тухай</a>
-              </nav>
-              <div className="flex items-center space-x-4">
-                <button className="text-black hover:text-gray-600">Нэвтрэх</button>
-              </div>
-            </div>
-          </div>
-        </header>
+        <Header />
 
         {/* Breadcrumb */}
         <div className="bg-white py-2">
