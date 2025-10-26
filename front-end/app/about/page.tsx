@@ -1,4 +1,10 @@
 import Image from "next/image";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Бидний тухай - Clive Christian",
+  description: "Clive Christian-ийн түүх болон брэнд",
+};
 
 export default function About() {
   return (

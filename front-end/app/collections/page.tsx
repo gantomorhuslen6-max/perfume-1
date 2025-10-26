@@ -1,4 +1,10 @@
 import CollectionSection from '../components/CollectionSection';
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Цуглуулга - Clive Christian",
+  description: "Clive Christian үнэртний цуглуулгууд",
+};
 
 export default function CollectionsPage() {
   return (
