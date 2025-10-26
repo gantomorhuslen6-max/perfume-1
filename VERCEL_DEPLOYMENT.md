@@ -3,21 +3,39 @@
 ## ✅ Frontend is Ready for Vercel Deployment!
 
 ### 🔧 **Fixed Issues:**
-- ✅ Updated `vercel.json` to use `rootDirectory: "front-end"`
-- ✅ Simplified build commands (no more `cd` commands)
+- ✅ Created root-level `package.json` to handle monorepo structure
+- ✅ Updated `vercel.json` to use root-level commands
 - ✅ Created `.vercelignore` to exclude backend files
 - ✅ Verified build process works locally
 
 ### 📋 **Vercel Configuration:**
 
+#### Root `package.json`:
+```json
+{
+  "name": "perfume-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "cd front-end && npm install && npm run build",
+    "start": "cd front-end && npm start",
+    "dev": "cd front-end && npm run dev",
+    "install": "cd front-end && npm install"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
+```
+
 #### `vercel.json`:
 ```json
 {
+  "version": 2,
   "buildCommand": "npm run build",
-  "outputDirectory": ".next",
-  "installCommand": "npm install",
-  "framework": "nextjs",
-  "rootDirectory": "front-end"
+  "outputDirectory": "front-end/.next",
+  "installCommand": "npm run install",
+  "framework": "nextjs"
 }
 ```
 

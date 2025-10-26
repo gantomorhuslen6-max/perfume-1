@@ -1,0 +1,14 @@
+{
+  "name": "perfume-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "cd front-end && npm install && npm run build",
+    "start": "cd front-end && npm start",
+    "dev": "cd front-end && npm run dev",
+    "install": "cd front-end && npm install"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
