@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { Perfume, formatPrice } from '../data/perfumes';
 
 interface ProductCardProps {
@@ -7,7 +8,7 @@ interface ProductCardProps {
 
 export default function ProductCard({ perfume }: ProductCardProps) {
   return (
-    <div className="group relative flex flex-col rounded-lg overflow-hidden">
+    <Link href={`/perfumes/${perfume.id}`} className="group relative flex flex-col rounded-lg overflow-hidden">
       {/* Badges */}
       <div className="absolute top-2 left-2 z-10 flex gap-2">
         {perfume.badges.includes('шилдэг борлуулалт') && (
@@ -66,6 +67,6 @@ export default function ProductCard({ perfume }: ProductCardProps) {
           Сагсанд нэмэх
         </button>
       </div>
-    </div>
+    </Link>
   );
 }
