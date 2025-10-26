@@ -1,9 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 @import "tailwindcss";
 
 :root {
   --background: #f0ece4;
   --foreground: #000000;
+  --cream: #f0ece4;
+  --black: #000000;
+  --gold: #d4af37;
 }
 
 @theme inline {
@@ -18,6 +23,16 @@ body {
   color: var(--foreground);
   font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
   line-height: 1.6;
+}
+
+/* Elegant serif font for headings */
+.font-elegant {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* Realist sans-serif for descriptions */
+.font-realist {
+  font-family: 'Roboto', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 /* Clive Christian specific styles */
@@ -35,12 +50,29 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
 }
 
+/* Product card styles */
+.product-card {
+  transition: all 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
 /* Button hover effects */
+button {
+  transition: all 0.3s ease;
+}
+
 button:hover {
   transition: all 0.3s ease;
 }
 
 /* Link hover effects */
+a {
+  transition: color 0.3s ease;
+}
+
 a:hover {
   transition: color 0.3s ease;
 }
@@ -48,9 +80,70 @@ a:hover {
 /* Form input focus styles */
 input:focus {
   transition: all 0.3s ease;
+  outline: none;
+}
+
+/* Luxury border effect */
+.luxury-border {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Collection tagline styling */
+.collection-tagline {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: none;
+}
+
+/* Badge styles */
+.badge {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.5rem;
+  display: inline-block;
+}
+
+/* Product grid gap */
+.product-grid {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 /* Clive Christian specific background color */
 .bg-clive-beige {
   background-color: #f0ece4;
+}
+
+/* Hero section styling */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-overlay {
+  background: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
 }

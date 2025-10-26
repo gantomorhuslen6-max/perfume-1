@@ -35,10 +35,8 @@ export default function RootLayout({
                 <h1 className="text-2xl font-bold text-black">CLIVE CHRISTIAN</h1>
               </div>
               <nav className="hidden md:flex space-x-8">
-                <a href="#" className="text-black hover:text-gray-600">Үнэртэн</a>
-                <a href="#" className="text-black hover:text-gray-600">Цуглуулга</a>
-                <a href="#" className="text-black hover:text-gray-600">Бэлэг</a>
-                <a href="#" className="text-black hover:text-gray-600">Түүх</a>
+                <a href="/perfumes" className="text-black hover:text-gray-600">Үнэртэн</a>
+                <a href="/collections" className="text-black hover:text-gray-600">Цуглуулга</a>  
                 <a href="/about" className="text-black hover:text-gray-600">Бидний тухай</a>
               </nav>
               <div className="flex items-center space-x-4">
@@ -70,11 +68,11 @@ export default function RootLayout({
               <div>
                 <h5 className="font-semibold mb-4">Үнэртэн</h5>
                 <ul className="space-y-2 text-sm">
-                  <li><a href="#" className="hover:text-gray-300">Эрэгтэйчүүдэд зориулсан үнэртэн</a></li>
-                  <li><a href="#" className="hover:text-gray-300">Эмэгтэйчүүдэд зориулсан үнэртэн</a></li>
-                  <li><a href="#" className="hover:text-gray-300">Үнэртэн</a></li>
-                  <li><a href="#" className="hover:text-gray-300">Цуглуулга</a></li>
-                  <li><a href="#" className="hover:text-gray-300">Түүх</a></li>
+                  <li><a href="/perfumes" className="hover:text-gray-300">Эрэгтэйчүүдэд зориулсан үнэртэн</a></li>
+                  <li><a href="/perfumes" className="hover:text-gray-300">Эмэгтэйчүүдэд зориулсан үнэртэн</a></li>
+                  <li><a href="/perfumes" className="hover:text-gray-300">Үнэртэн</a></li>
+                  <li><a href="/collections" className="hover:text-gray-300">Цуглуулга</a></li>
+                  <li><a href="/about" className="hover:text-gray-300">Түүх</a></li>
                 </ul>
               </div>
               <div>
