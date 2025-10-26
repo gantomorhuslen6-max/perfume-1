@@ -55,7 +55,6 @@ app.get('/api', (req, res) => {
     endpoints: {
       health: '/health',
       api: '/api',
-      upload: '/api/upload',
       auth: '/api/auth'
     }
   });
@@ -63,24 +62,6 @@ app.get('/api', (req, res) => {
 
 // Authentication routes
 app.use('/api/auth', authRoutes);
-
-// Image upload endpoint (temporarily disabled)
-// app.post('/api/upload', upload.single('image'), (req, res) => {
-//   try {
-//     if (!req.file) {
-//       return res.status(400).json({ error: 'No image file provided' });
-//     }
-//     
-//     return res.json({
-//       message: 'Image uploaded successfully',
-//       imageUrl: req.file.path,
-//       publicId: req.file.filename
-//     });
-//   } catch (error) {
-//     console.error('Upload error:', error);
-//     return res.status(500).json({ error: 'Failed to upload image' });
-//   }
-// });
 
 // Error handling middleware
 app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
@@ -92,7 +73,7 @@ app.use((err: Error, req: express.Request, res: express.Response, next: express.
 });
 
 // 404 handler
-app.use((req, res) => {
+app.use('*', (req, res) => {
   res.status(404).json({
     error: 'Route not found',
     path: req.originalUrl
@@ -110,7 +91,7 @@ const startServer = async () => {
       console.log(`🚀 Server running on port ${PORT}`);
       console.log(`📊 Health check: http://localhost:${PORT}/health`);
       console.log(`🔗 API endpoint: http://localhost:${PORT}/api`);
-      console.log(`📤 Upload endpoint: http://localhost:${PORT}/api/upload`);
+      console.log(`🔐 Auth endpoint: http://localhost:${PORT}/api/auth`);
     });
   } catch (error) {
     console.error('❌ Failed to start server:', error);
@@ -121,4 +102,3 @@ const startServer = async () => {
 startServer();
 
 export default app;
-
