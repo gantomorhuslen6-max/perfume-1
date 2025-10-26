@@ -1,0 +1,5 @@
+backend/
+ADMIN_TROUBLESHOOTING.md
+*.md
+.git/
+.gitignore
