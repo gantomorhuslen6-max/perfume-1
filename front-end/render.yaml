@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: perfume-frontend
+    env: node
+    plan: free
+    buildCommand: npm install --legacy-peer-deps && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_PUBLIC_API_URL
+        sync: false
+    healthCheckPath: /
+    autoDeploy: true
+    branch: main
+
