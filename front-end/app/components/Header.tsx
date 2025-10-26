@@ -34,19 +34,19 @@ export default function Header() {
             </Link>
           </div>
           <nav className="hidden md:flex space-x-8">
-            <a href="#" className="text-black hover:text-gray-600">
+            <a key="perfumes" href="#" className="text-black hover:text-gray-600">
               Үнэртэн
             </a>
-            <a href="#" className="text-black hover:text-gray-600">
+            <a key="collections" href="#" className="text-black hover:text-gray-600">
               Цуглуулга
             </a>
-            <a href="#" className="text-black hover:text-gray-600">
+            <a key="gift" href="#" className="text-black hover:text-gray-600">
               Бэлэг
             </a>
-            <a href="#" className="text-black hover:text-gray-600">
+            <a key="history" href="#" className="text-black hover:text-gray-600">
               Түүх
             </a>
-            <a href="/about" className="text-black hover:text-gray-600">
+            <a key="about" href="/about" className="text-black hover:text-gray-600">
               Бидний тухай
             </a>
           </nav>

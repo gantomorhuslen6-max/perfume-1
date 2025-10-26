@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "./components/Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,9 +35,9 @@ export default function RootLayout({
                 <h1 className="text-2xl font-bold text-black">PERFUME</h1>
               </div>
               <nav className="hidden md:flex space-x-8">
-                <a href="/perfumes" className="text-black hover:text-gray-600">Үнэртэн</a>
-                <a href="/collections" className="text-black hover:text-gray-600">Цуглуулга</a>  
-                <a href="/about" className="text-black hover:text-gray-600">Бидний тухай</a>
+                <a key="perfumes" href="/perfumes" className="text-black hover:text-gray-600">Үнэртэн</a>
+                <a key="collections" href="/collections" className="text-black hover:text-gray-600">Цуглуулга</a>  
+                <a key="about" href="/about" className="text-black hover:text-gray-600">Бидний тухай</a>
               </nav>
               <div className="flex items-center space-x-4">
                 <button className="text-black hover:text-gray-600">Нэвтрэх</button>
@@ -52,9 +51,9 @@ export default function RootLayout({
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <nav className="text-sm">
               <ol className="flex items-center space-x-2">
-                <li><a href="/" className="text-gray-500 hover:text-gray-700">Нүүр</a></li>
-                <li className="text-gray-400">/</li>
-                <li className="text-gray-900">Бидний тухай</li>
+                <li key="home"><a href="/" className="text-gray-500 hover:text-gray-700">Нүүр</a></li>
+                <li key="separator" className="text-gray-400">/</li>
+                <li key="current" className="text-gray-900">Бидний тухай</li>
               </ol>
             </nav>
           </div>
@@ -69,46 +68,46 @@ export default function RootLayout({
               <div>
                 <h5 className="font-semibold mb-4">Үнэртэн</h5>
                 <ul className="space-y-2 text-sm">
-                  <li><a href="/perfumes" className="hover:text-gray-300">Эрэгтэйчүүдэд зориулсан үнэртэн</a></li>
-                  <li><a href="/perfumes" className="hover:text-gray-300">Эмэгтэйчүүдэд зориулсан үнэртэн</a></li>
-                  <li><a href="/perfumes" className="hover:text-gray-300">Үнэртэн</a></li>
-                  <li><a href="/collections" className="hover:text-gray-300">Цуглуулга</a></li>
-                  <li><a href="/about" className="hover:text-gray-300">Түүх</a></li>
+                  <li key="men"><a href="/perfumes" className="hover:text-gray-300">Эрэгтэйчүүдэд зориулсан үнэртэн</a></li>
+                  <li key="women"><a href="/perfumes" className="hover:text-gray-300">Эмэгтэйчүүдэд зориулсан үнэртэн</a></li>
+                  <li key="all"><a href="/perfumes" className="hover:text-gray-300">Үнэртэн</a></li>
+                  <li key="collections"><a href="/collections" className="hover:text-gray-300">Цуглуулга</a></li>
+                  <li key="history"><a href="/about" className="hover:text-gray-300">Түүх</a></li>
                 </ul>
               </div>
               <div>
                 <h5 className="font-semibold mb-4">үйлчлүүлэгчийн тусламж</h5>
                 <ul className="space-y-2 text-sm">
-                  <li><a href="#" className="hover:text-gray-300">Дэлгүүр олох</a></li>
-                  <li><a href="#" className="hover:text-gray-300">Бэлэг</a></li>
+                  <li key="store"><a href="#" className="hover:text-gray-300">Дэлгүүр олох</a></li>
+                  <li key="gift"><a href="#" className="hover:text-gray-300">Бэлэг</a></li>
                 </ul>
               </div>
               <div>
                 <h5 className="font-semibold mb-4">Нууцлал болон нөхцөл</h5>
                 <ul className="space-y-2 text-sm">
-                  <li><a href="#" className="hover:text-gray-300">Худалдааны нөхцөл</a></li>
-                  <li><a href="#" className="hover:text-gray-300">Хэрэглээний нөхцөл</a></li>
-                  <li><a href="#" className="hover:text-gray-300">Нууцлалын бодлого</a></li>
-                  <li><a href="#" className="hover:text-gray-300">Cookie бодлого</a></li>
-                  <li><a href="#" className="hover:text-gray-300">Хүргэлт болон төлбөр</a></li>
-                  <li><a href="#" className="hover:text-gray-300">Хүргэлт болон буцаах</a></li>
-                  <li><a href="#" className="hover:text-gray-300">Маргааны шийдвэрлэлт</a></li>
+                  <li key="terms"><a href="#" className="hover:text-gray-300">Худалдааны нөхцөл</a></li>
+                  <li key="usage"><a href="#" className="hover:text-gray-300">Хэрэглээний нөхцөл</a></li>
+                  <li key="privacy"><a href="#" className="hover:text-gray-300">Нууцлалын бодлого</a></li>
+                  <li key="cookies"><a href="#" className="hover:text-gray-300">Cookie бодлого</a></li>
+                  <li key="delivery"><a href="#" className="hover:text-gray-300">Хүргэлт болон төлбөр</a></li>
+                  <li key="returns"><a href="#" className="hover:text-gray-300">Хүргэлт болон буцаах</a></li>
+                  <li key="disputes"><a href="#" className="hover:text-gray-300">Маргааны шийдвэрлэлт</a></li>
                 </ul>
               </div>
               <div>
                 <h5 className="font-semibold mb-4">Тусламж</h5>
                 <ul className="space-y-2 text-sm">
-                  <li><a href="/about" className="hover:text-gray-300">Бидний тухай</a></li>
-                  <li><a href="#" className="hover:text-gray-300">Холбоо барих</a></li>
-                  <li><a href="#" className="hover:text-gray-300">Түгээмэл асуулт</a></li>
+                  <li key="about"><a href="/about" className="hover:text-gray-300">Бидний тухай</a></li>
+                  <li key="contact"><a href="#" className="hover:text-gray-300">Холбоо барих</a></li>
+                  <li key="faq"><a href="#" className="hover:text-gray-300">Түгээмэл асуулт</a></li>
                 </ul>
                 <div className="mt-6">
                   <h5 className="font-semibold mb-4">Олон нийтийн сүлжээ</h5>
                   <div className="flex space-x-4">
-                    <a href="#" className="hover:text-gray-300">X</a>
-                    <a href="#" className="hover:text-gray-300">YouTube</a>
-                    <a href="#" className="hover:text-gray-300">Facebook</a>
-                    <a href="#" className="hover:text-gray-300">Instagram</a>
+                    <a key="twitter" href="#" className="hover:text-gray-300">X</a>
+                    <a key="youtube" href="#" className="hover:text-gray-300">YouTube</a>
+                    <a key="facebook" href="#" className="hover:text-gray-300">Facebook</a>
+                    <a key="instagram" href="#" className="hover:text-gray-300">Instagram</a>
                   </div>
                 </div>
               </div>
