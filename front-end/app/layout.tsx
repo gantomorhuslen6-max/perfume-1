@@ -29,7 +29,23 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {/* Header */}
-        <Header />
+        <header className="border-b border-gray-200 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center py-4">
+              <div className="flex items-center">
+                <h1 className="text-2xl font-bold text-black">PERFUME</h1>
+              </div>
+              <nav className="hidden md:flex space-x-8">
+                <a href="/perfumes" className="text-black hover:text-gray-600">Үнэртэн</a>
+                <a href="/collections" className="text-black hover:text-gray-600">Цуглуулга</a>  
+                <a href="/about" className="text-black hover:text-gray-600">Бидний тухай</a>
+              </nav>
+              <div className="flex items-center space-x-4">
+                <button className="text-black hover:text-gray-600">Нэвтрэх</button>
+              </div>
+            </div>
+          </div>
+        </header>
 
         {/* Breadcrumb */}
         <div className="bg-white py-2">
@@ -53,11 +69,11 @@ export default function RootLayout({
               <div>
                 <h5 className="font-semibold mb-4">Үнэртэн</h5>
                 <ul className="space-y-2 text-sm">
-                  <li><a href="#" className="hover:text-gray-300">Эрэгтэйчүүдэд зориулсан үнэртэн</a></li>
-                  <li><a href="#" className="hover:text-gray-300">Эмэгтэйчүүдэд зориулсан үнэртэн</a></li>
-                  <li><a href="#" className="hover:text-gray-300">Үнэртэн</a></li>
-                  <li><a href="#" className="hover:text-gray-300">Цуглуулга</a></li>
-                  <li><a href="#" className="hover:text-gray-300">Түүх</a></li>
+                  <li><a href="/perfumes" className="hover:text-gray-300">Эрэгтэйчүүдэд зориулсан үнэртэн</a></li>
+                  <li><a href="/perfumes" className="hover:text-gray-300">Эмэгтэйчүүдэд зориулсан үнэртэн</a></li>
+                  <li><a href="/perfumes" className="hover:text-gray-300">Үнэртэн</a></li>
+                  <li><a href="/collections" className="hover:text-gray-300">Цуглуулга</a></li>
+                  <li><a href="/about" className="hover:text-gray-300">Түүх</a></li>
                 </ul>
               </div>
               <div>
