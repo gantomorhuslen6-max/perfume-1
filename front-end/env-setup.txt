@@ -1,0 +1,4 @@
+# Environment Variables for Frontend
+# Copy this content to .env.local file in the front-end directory
+
+NEXT_PUBLIC_API_URL=https://perfume-900a.onrender.com
