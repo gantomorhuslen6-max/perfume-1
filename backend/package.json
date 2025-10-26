@@ -2,13 +2,15 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "Perfume backend API server",
-  "main": "dist/index.js",
+  "main": "server.cjs",
   "scripts": {
+    "start": "node server.cjs",
+    "dev": "nodemon server.cjs",
     "build": "tsc",
-    "start": "node dist/index.js",
-    "dev": "npm run build && nodemon --watch src --ext ts --exec \"npm run build && node dist/index.js\"",
+    "build:prod": "npm ci --only=production",
     "seed": "npm run build && node dist/scripts/seedAboutContent.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "npm run build:prod"
   },
   "keywords": [
     "api",
@@ -17,7 +19,6 @@
   ],
   "author": "",
   "license": "ISC",
-  "type": "module",
   "dependencies": {
     "@types/mongoose": "^5.11.96",
     "@types/multer": "^2.0.0",
