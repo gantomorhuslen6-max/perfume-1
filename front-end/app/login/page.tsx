@@ -25,34 +25,43 @@ export default function Login() {
     setIsLoading(true);
     setError("");
 
-    try {
-      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
-      
-      const response = await fetch(`${API_URL}/api/auth/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        // Store token in localStorage
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("user", JSON.stringify(data.user));
-        alert("Амжилттай нэвтэрлээ!");
-        router.push("/");
-      } else {
-        setError(data.message || "Нэвтрэхэд алдаа гарлаа");
-      }
-    } catch (error) {
-      console.error('Login error:', error);
-      setError("Сервертэй холбогдоход алдаа гарлаа. Backend серверийг шалгана уу.");
-    } finally {
+    // Simple validation - if user fills in email and password, they're logged in
+    if (!formData.email || !formData.password) {
+      setError("И-мэйл болон нууц үг оруулна уу");
       setIsLoading(false);
+      return;
     }
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setError("Зөв и-мэйл хаяг оруулна уу");
+      setIsLoading(false);
+      return;
+    }
+
+    // Simulate login process
+    setTimeout(() => {
+      // Create a mock user object
+      const mockUser = {
+        id: "1",
+        firstName: "Хэрэглэгч",
+        lastName: "Нэр",
+        email: formData.email,
+        role: formData.email.includes('admin') ? 'admin' : 'user'
+      };
+
+      // Create a mock token
+      const mockToken = "mock-token-" + Date.now();
+
+      // Store in localStorage
+      localStorage.setItem("token", mockToken);
+      localStorage.setItem("user", JSON.stringify(mockUser));
+      
+      alert("Амжилттай нэвтэрлээ!");
+      router.push("/");
+      setIsLoading(false);
+    }, 1000); // Simulate network delay
   };
 
   return (
@@ -188,6 +197,9 @@ export default function Login() {
                     >
                       Энд дарж бүртгүүлнэ үү
                     </a>
+                  </p>
+                  <p className="text-gray-500 text-xs mt-2">
+                    Админ эрх авахын тулд и-мэйл хаягт "admin" гэсэн үг агуулсан хаяг ашиглана уу
                   </p>
                 </div>
               </div>

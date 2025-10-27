@@ -36,39 +36,50 @@ export default function Signup() {
       return;
     }
 
-    try {
-      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
-      
-      const response = await fetch(`${API_URL}/api/auth/signup`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          email: formData.email,
-          password: formData.password,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        // Store token in localStorage
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("user", JSON.stringify(data.user));
-        alert("Бүртгэл амжилттай! Нэвтэрч орно уу.");
-        router.push("/login");
-      } else {
-        setError(data.message || "Бүртгүүлэхэд алдаа гарлаа");
-      }
-    } catch (error) {
-      console.error('Signup error:', error);
-      setError("Сервертэй холбогдоход алдаа гарлаа. Backend серверийг шалгана уу.");
-    } finally {
+    // Basic validation
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.password) {
+      setError("Бүх талбарыг бөглөнө үү");
       setIsLoading(false);
+      return;
     }
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setError("Зөв и-мэйл хаяг оруулна уу");
+      setIsLoading(false);
+      return;
+    }
+
+    // Password length validation
+    if (formData.password.length < 6) {
+      setError("Нууц үг хамгийн багадаа 6 тэмдэгт байх ёстой");
+      setIsLoading(false);
+      return;
+    }
+
+    // Simulate signup process
+    setTimeout(() => {
+      // Create a mock user object
+      const mockUser = {
+        id: "1",
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        role: "user"
+      };
+
+      // Create a mock token
+      const mockToken = "mock-token-" + Date.now();
+
+      // Store in localStorage
+      localStorage.setItem("token", mockToken);
+      localStorage.setItem("user", JSON.stringify(mockUser));
+      
+      alert("Бүртгэл амжилттай! Нэвтэрч орно уу.");
+      router.push("/");
+      setIsLoading(false);
+    }, 1000); // Simulate network delay
   };
 
   return (
