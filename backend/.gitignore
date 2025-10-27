@@ -1,7 +1,9 @@
 # Dependencies
 node_modules/
-dist/
 .env
+
+# Note: dist/ is NOT ignored because it contains compiled code needed for deployment
+# The build process will generate dist/ during deployment
 
 # Logs
 logs/
