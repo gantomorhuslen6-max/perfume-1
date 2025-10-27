@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import connectDB from '../config/database.js';
-import AboutContent from '../models/AboutContent.js';
+import connectDB from '../config/database';
+import AboutContent from '../models/AboutContent';
 
 // Load environment variables
 dotenv.config();

@@ -26,9 +26,9 @@ export default function Login() {
     setError("");
 
     try {
-      console.log('Attempting login with:', { email: formData.email });
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
       
-      const response = await fetch("/api/auth/login", {
+      const response = await fetch(`${API_URL}/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -36,21 +36,20 @@ export default function Login() {
         body: JSON.stringify(formData),
       });
 
-      console.log('Response status:', response.status);
       const data = await response.json();
-      console.log('Response data:', data);
 
       if (response.ok) {
         // Store token in localStorage
         localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(data.user));
+        alert("Амжилттай нэвтэрлээ!");
         router.push("/");
       } else {
         setError(data.message || "Нэвтрэхэд алдаа гарлаа");
       }
     } catch (error) {
       console.error('Login error:', error);
-      setError("Сервертэй холбогдоход алдаа гарлаа");
+      setError("Сервертэй холбогдоход алдаа гарлаа. Backend серверийг шалгана уу.");
     } finally {
       setIsLoading(false);
     }

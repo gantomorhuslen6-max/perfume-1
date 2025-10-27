@@ -37,13 +37,9 @@ export default function Signup() {
     }
 
     try {
-      console.log('Attempting signup with:', { 
-        firstName: formData.firstName, 
-        lastName: formData.lastName, 
-        email: formData.email 
-      });
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
       
-      const response = await fetch("/api/auth/signup", {
+      const response = await fetch(`${API_URL}/api/auth/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -56,21 +52,20 @@ export default function Signup() {
         }),
       });
 
-      console.log('Response status:', response.status);
       const data = await response.json();
-      console.log('Response data:', data);
 
       if (response.ok) {
         // Store token in localStorage
         localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(data.user));
-        router.push("/");
+        alert("Бүртгэл амжилттай! Нэвтэрч орно уу.");
+        router.push("/login");
       } else {
         setError(data.message || "Бүртгүүлэхэд алдаа гарлаа");
       }
     } catch (error) {
       console.error('Signup error:', error);
-      setError("Сервертэй холбогдоход алдаа гарлаа");
+      setError("Сервертэй холбогдоход алдаа гарлаа. Backend серверийг шалгана уу.");
     } finally {
       setIsLoading(false);
     }

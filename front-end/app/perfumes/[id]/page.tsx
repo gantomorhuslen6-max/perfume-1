@@ -3,13 +3,17 @@
 import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 import { perfumes } from '../../data/perfumes';
+import { useCart } from '../../contexts/CartContext';
 import ProductCard from '../../components/ProductCard';
 
 export default function PerfumeDetail() {
   const params = useParams();
   const perfumeId = params.id as string;
   const perfume = perfumes.find(p => p.id === perfumeId);
+  const { addToCart, getItemQuantity } = useCart();
+  const [selectedSize, setSelectedSize] = useState<string>('');
 
   if (!perfume) {
     return (
@@ -116,7 +120,12 @@ export default function PerfumeDetail() {
                     {perfume.sizes.map((size, idx) => (
                       <button
                         key={idx}
-                        className="border border-black px-6 py-3 hover:bg-black hover:text-white transition-colors text-sm uppercase tracking-wide"
+                        onClick={() => setSelectedSize(size)}
+                        className={`border px-6 py-3 transition-colors text-sm uppercase tracking-wide ${
+                          selectedSize === size
+                            ? 'bg-black text-white border-black'
+                            : 'border-black hover:bg-black hover:text-white'
+                        }`}
                       >
                         {size}
                       </button>
@@ -126,8 +135,11 @@ export default function PerfumeDetail() {
               )}
 
               {/* Add to Cart Button */}
-              <button className="bg-black text-white px-8 py-4 hover:bg-gray-800 transition-colors uppercase tracking-wide font-semibold mb-8 w-full">
-                Сагсанд нэмэх
+              <button 
+                onClick={() => addToCart(perfume, selectedSize || undefined)}
+                className="bg-black text-white px-8 py-4 hover:bg-gray-800 transition-colors uppercase tracking-wide font-semibold mb-8 w-full"
+              >
+                Сагсанд нэмэх {getItemQuantity(perfume.id, selectedSize || undefined) > 0 && `(${getItemQuantity(perfume.id, selectedSize || undefined)})`}
               </button>
 
               {/* Info Sections */}

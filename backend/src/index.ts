@@ -4,9 +4,10 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
-import connectDB from './config/database.js';
-import authRoutes from './routes/auth.js';
-import aboutRoutes from './routes/about.js';
+import mongoose from 'mongoose';
+import connectDB from './config/database';
+import authRoutes from './routes/auth';
+import aboutRoutes from './routes/about';
 
 // Load environment variables
 dotenv.config();
@@ -41,10 +42,11 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 // Health check endpoint
 app.get('/health', (req, res) => {
   res.status(200).json({
-    status: 'OK',
+    status: 'healthy',
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
-    environment: process.env.NODE_ENV || 'development'
+    environment: process.env.NODE_ENV || 'development',
+    database: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected'
   });
 });
 
@@ -107,8 +109,12 @@ app.use((req, res) => {
 // Connect to MongoDB and start server
 const startServer = async () => {
   try {
-    // Connect to MongoDB
-    await connectDB();
+    // Connect to MongoDB (only if MONGODB_URI is provided)
+    if (process.env.MONGODB_URI) {
+      await connectDB();
+    } else {
+      console.log('⚠️  MONGODB_URI not provided, running without database connection');
+    }
     
     // Start the server
     app.listen(PORT, () => {
