@@ -1,18 +1,9 @@
-import { Request, Response, NextFunction } from 'express';
+import { Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import User from '../models/User';
+import { AuthRequest } from '../types';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
-
-export interface AuthRequest extends Request {
-  user?: {
-    id: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-    role: string;
-  };
-}
 
 // Middleware to verify JWT token
 export const authenticateToken = async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {

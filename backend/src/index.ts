@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
@@ -40,7 +40,7 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // Health check endpoint
-app.get('/health', (req, res) => {
+app.get('/health', (req: Request, res: Response) => {
   res.status(200).json({
     status: 'healthy',
     timestamp: new Date().toISOString(),
@@ -51,7 +51,7 @@ app.get('/health', (req, res) => {
 });
 
 // API routes
-app.get('/api', (req, res) => {
+app.get('/api', (req: Request, res: Response) => {
   res.json({
     message: 'Perfume API Server',
     version: '1.0.0',
@@ -90,7 +90,7 @@ app.use('/api/about', aboutRoutes);
 // });
 
 // Error handling middleware
-app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   console.error(err.stack);
   res.status(500).json({
     error: 'Something went wrong!',
@@ -99,7 +99,7 @@ app.use((err: Error, req: express.Request, res: express.Response, next: express.
 });
 
 // 404 handler
-app.use((req, res) => {
+app.use((req: Request, res: Response) => {
   res.status(404).json({
     error: 'Route not found',
     path: req.originalUrl

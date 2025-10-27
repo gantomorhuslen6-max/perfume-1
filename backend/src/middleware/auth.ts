@@ -1,10 +1,7 @@
-import { Request, Response, NextFunction } from 'express';
+import { Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import User from '../models/User';
-
-interface AuthRequest extends Request {
-  user?: any;
-}
+import { AuthRequest } from '../types';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
 
@@ -24,7 +21,13 @@ export const authenticateToken = async (req: AuthRequest, res: Response, next: N
       return res.status(401).json({ message: 'Хэрэглэгч олдсонгүй' });
     }
 
-    req.user = user;
+    req.user = {
+      id: (user._id as any).toString(),
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      role: user.role
+    };
     return next();
   } catch (error) {
     console.error('Authentication error:', error);

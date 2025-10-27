@@ -1,11 +1,12 @@
 import express from 'express';
-import { body, validationResult } from 'express-validator';
 import AboutContent from '../models/AboutContent';
-import { authenticateToken, requireAdmin, AuthRequest } from '../middleware/admin';
+import { authenticateToken, requireAdmin } from '../middleware/admin';
+import { AuthRequest } from '../types';
+
+const expressValidator = require('express-validator');
+const { body, validationResult } = expressValidator;
 
 const router = express.Router();
-
-// Get all about content (public)
 router.get('/', async (req: express.Request, res: express.Response): Promise<void> => {
   try {
     const content = await AboutContent.find({ isActive: true })

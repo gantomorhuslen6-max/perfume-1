@@ -1,7 +1,8 @@
 import { v2 as cloudinary } from 'cloudinary';
-import multer from 'multer';
+import multer, { FileFilterCallback } from 'multer';
 import { CloudinaryStorage } from 'multer-storage-cloudinary';
 import dotenv from 'dotenv';
+import { Request } from 'express';
 
 dotenv.config();
 
@@ -27,7 +28,7 @@ export const upload = multer({
   limits: {
     fileSize: parseInt(process.env.MAX_FILE_SIZE || '10485760') // 10MB default
   },
-  fileFilter: (req, file, cb) => {
+  fileFilter: (req: Request, file: Express.Multer.File, cb: FileFilterCallback) => {
     if (file.mimetype.startsWith('image/')) {
       cb(null, true);
     } else {

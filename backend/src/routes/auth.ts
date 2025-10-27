@@ -1,11 +1,11 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
-import { body, validationResult } from 'express-validator';
 import User from '../models/User';
 
-const router = express.Router();
+const expressValidator = require('express-validator');
+const { body, validationResult } = expressValidator;
 
-// JWT Secret
+const router = express.Router();
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
 
 // Generate JWT token
@@ -30,7 +30,7 @@ router.post('/signup', [
   body('password')
     .isLength({ min: 6 })
     .withMessage('Нууц үг хамгийн багадаа 6 тэмдэгт байх ёстой')
-], async (req: express.Request, res: express.Response): Promise<void> => {
+], async (req: Request, res: Response): Promise<void> => {
   try {
     // Check validation errors
     const errors = validationResult(req);
@@ -94,7 +94,7 @@ router.post('/login', [
   body('password')
     .notEmpty()
     .withMessage('Нууц үг оруулах шаардлагатай')
-], async (req: express.Request, res: express.Response): Promise<void> => {
+], async (req: Request, res: Response): Promise<void> => {
   try {
     // Check validation errors
     const errors = validationResult(req);
