@@ -13,6 +13,14 @@ export interface AboutContent {
   updatedAt: string;
 }
 
+export interface User {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  role: string;
+}
+
 export const fetchAboutContent = async (): Promise<AboutContent[]> => {
   try {
     const response = await fetch(`${API_BASE}/api/about`);

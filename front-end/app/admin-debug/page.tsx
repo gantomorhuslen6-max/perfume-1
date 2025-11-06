@@ -2,12 +2,28 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { User } from '../utils/api';
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
+interface DebugInfo {
+  timestamp: string;
+  steps: string[];
+  backendRunning?: boolean;
+  hasToken?: boolean;
+  user?: User;
+  isAdmin?: boolean;
+  authError?: string | unknown;
+  adminEndpointWorking?: boolean;
+  adminEndpointError?: string | unknown;
+}
+
 export default function AdminDebug() {
   const router = useRouter();
-  const [debugInfo, setDebugInfo] = useState<any>({});
+  const [debugInfo, setDebugInfo] = useState<DebugInfo>({
+    timestamp: '',
+    steps: []
+  });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -15,7 +31,7 @@ export default function AdminDebug() {
   }, []);
 
   const debugAdminAccess = async () => {
-    const info: any = {
+    const info: DebugInfo = {
       timestamp: new Date().toISOString(),
       steps: []
     };

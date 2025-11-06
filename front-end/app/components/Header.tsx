@@ -3,9 +3,10 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useCart } from "../contexts/CartContext";
+import { User } from "../utils/api";
 
 export default function Header() {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
   const { state } = useCart();
 
   useEffect(() => {
